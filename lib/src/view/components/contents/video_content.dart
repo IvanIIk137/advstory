@@ -33,6 +33,7 @@ class VideoContent extends ManagedContent {
     Widget? footer,
     Duration? timeout,
     Widget Function()? errorBuilder,
+    Color? color,
     Key? key,
   }) : super(
           url: url,
@@ -42,6 +43,7 @@ class VideoContent extends ManagedContent {
           footer: footer,
           timeout: timeout,
           errorBuiler: errorBuilder,
+          color: color,
           key: key,
         );
 
@@ -85,11 +87,15 @@ class _VideoContentState extends StoryContentState<VideoContent> {
 
     if (_videoController?.value.isInitialized == true) {
       return Center(
+          child: Container(
+        height: MediaQuery.of(context).size.height,
+        width: MediaQuery.of(context).size.width,
+        color: widget.color,
         child: AspectRatio(
           aspectRatio: _videoController!.value.aspectRatio,
           child: VideoPlayer(_videoController!),
         ),
-      );
+      ));
     }
 
     return shouldShowLoading ? loadingScreen : const SizedBox();
