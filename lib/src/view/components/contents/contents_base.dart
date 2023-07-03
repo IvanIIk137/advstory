@@ -339,6 +339,7 @@ abstract class ManagedContent extends StoryContent {
     this.header,
     this.footer,
     this.timeout,
+      this.color,
     this.errorBuiler,
     Key? key,
   }) : super(key: key);
@@ -367,6 +368,8 @@ abstract class ManagedContent extends StoryContent {
   /// Builder to create error view to show when media couldn't loaded
   /// in [timeout].
   final Widget Function()? errorBuiler;
+
+final Color? color;
 
   @override
   StoryContentState<ManagedContent> createState();
