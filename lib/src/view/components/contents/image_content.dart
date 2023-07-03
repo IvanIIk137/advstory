@@ -27,6 +27,7 @@ class ImageContent extends ManagedContent {
     Widget? header,
     Widget? footer,
     Duration? timeout,
+     Color? color,
     Widget Function()? errorBuilder,
     Key? key,
   }) : super(
@@ -37,6 +38,7 @@ class ImageContent extends ManagedContent {
           footer: footer,
           timeout: timeout,
           errorBuiler: errorBuilder,
+    color: color,
           key: key,
         );
 
@@ -83,6 +85,7 @@ class _ImageContentState extends StoryContentState<ImageContent> {
 
     if (_imageProvider != null) {
       return Container(
+        color: widget.color,
         constraints: const BoxConstraints.expand(),
         child: Image(
           image: _imageProvider!,
