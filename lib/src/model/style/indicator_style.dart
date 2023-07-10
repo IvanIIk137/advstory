@@ -27,4 +27,6 @@ class IndicatorStyle {
   /// Empty indicator color. Default value is `Colors.grey.shade300` with 90%
   /// opacity.
   final Color backgroundColor;
+
+  final Widget? closeButton;
 }
