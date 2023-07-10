@@ -109,7 +109,7 @@ class StoryIndicator extends StatelessWidget {
               ),
             ),
             if(style.closeButton!=null)
-            style.closeButton
+            style.closeButton!
           ]),
         ),
       ),
