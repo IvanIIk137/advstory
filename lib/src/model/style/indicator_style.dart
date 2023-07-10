@@ -29,5 +29,5 @@ class IndicatorStyle {
   /// opacity.
   final Color backgroundColor;
 
-  final Widget? closeButton;
+  final Widget closeButton;
 }
