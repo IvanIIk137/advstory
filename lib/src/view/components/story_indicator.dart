@@ -88,7 +88,9 @@ class StoryIndicator extends StatelessWidget {
 
     _indicators.addAll(indicators);
   }
-
+@override
+  Widget build(BuildContext context) {
+    _generateIndicators();
  return Align(
       alignment: Alignment.topCenter,
       child: Padding(
