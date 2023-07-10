@@ -89,20 +89,29 @@ class StoryIndicator extends StatelessWidget {
     _indicators.addAll(indicators);
   }
 
-  @override
-  Widget build(BuildContext context) {
-    _generateIndicators();
-
-    return Align(
+ return Align(
       alignment: Alignment.topCenter,
       child: Padding(
         padding: style.padding,
         child: SizedBox(
           width: double.maxFinite,
-          height: style.height,
-          child: Row(children: _indicators),
+          child: Row(children: [
+            Expanded(
+              child: SizedBox(
+                height: style.height,
+                child: Row(
+                  children: [
+                    ..._indicators,
+                  ],
+                ),
+              ),
+            ),
+            if(style.closeButton!=null)
+            style.closeButton
+          ]),
         ),
       ),
     );
   }
+
 }
