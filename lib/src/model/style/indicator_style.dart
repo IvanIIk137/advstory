@@ -9,7 +9,7 @@ class IndicatorStyle {
     this.padding = const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
     this.backgroundColor = const Color(0xe6bdbdbd),
     this.valueColor = const Color(0xffffffff),
-    this.closeButton = Container();
+    this.closeButton = Container(),
   });
 
   /// Space between indicators.
