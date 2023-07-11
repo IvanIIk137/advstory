@@ -53,13 +53,18 @@ class StoryIndicator extends StatelessWidget {
         if (index != activeIndicatorIndex) {
           final isBefore = index < activeIndicatorIndex;
           return Expanded(
-            child: LinearProgressIndicator(
-              backgroundColor: style.backgroundColor,
-              valueColor: AlwaysStoppedAnimation<Color>(
-                isBefore ? style.valueColor : style.backgroundColor,
+            child: ClipRRect(
+              borderRadius: style.borderRadius != null
+                  ? BorderRadius.circular(style.borderRadius!)
+                  : BorderRadius.zero,
+              child: LinearProgressIndicator(
+                backgroundColor: style.backgroundColor,
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  isBefore ? style.valueColor : style.backgroundColor,
+                ),
+                value: isBefore ? 1 : 0,
+                minHeight: style.height,
               ),
-              value: isBefore ? 1 : 0,
-              minHeight: style.height,
             ),
           );
         } else {
