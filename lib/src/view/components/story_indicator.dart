@@ -67,11 +67,16 @@ class StoryIndicator extends StatelessWidget {
             child: AnimatedBuilder(
               animation: animation!,
               builder: (context, child) {
-                return LinearProgressIndicator(
-                  backgroundColor: style.backgroundColor,
-                  valueColor: AlwaysStoppedAnimation<Color>(style.valueColor),
-                  value: animation.value,
-                  minHeight: style.height,
+                return ClipRRect(
+                  borderRadius: style.borderRadius != null
+                      ? BorderRadius.circular(style.borderRadius!)
+                      : BorderRadius.zero,
+                  child: LinearProgressIndicator(
+                    backgroundColor: style.backgroundColor,
+                    valueColor: AlwaysStoppedAnimation<Color>(style.valueColor),
+                    value: animation.value,
+                    minHeight: style.height,
+                  ),
                 );
               },
             ),
@@ -88,10 +93,11 @@ class StoryIndicator extends StatelessWidget {
 
     _indicators.addAll(indicators);
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
     _generateIndicators();
- return Align(
+    return Align(
       alignment: Alignment.topCenter,
       child: Padding(
         padding: style.padding,
@@ -108,12 +114,10 @@ class StoryIndicator extends StatelessWidget {
                 ),
               ),
             ),
-            if(style.closeButton!=null)
-            style.closeButton!
+            if (style.closeButton != null) style.closeButton!
           ]),
         ),
       ),
     );
   }
-
 }
