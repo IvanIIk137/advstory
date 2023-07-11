@@ -10,6 +10,7 @@ class IndicatorStyle {
     this.backgroundColor = const Color(0xe6bdbdbd),
     this.valueColor = const Color(0xffffffff),
     this.closeButton,
+    this.borderRadius,
   });
 
   /// Space between indicators.
@@ -30,4 +31,6 @@ class IndicatorStyle {
   final Color backgroundColor;
 
   final Widget? closeButton;
+
+  final double? borderRadius;
 }
