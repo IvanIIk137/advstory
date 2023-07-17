@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:math';
-import 'dart:ui';
 
 import 'package:advstory/advstory.dart';
 import 'package:advstory/src/view/inherited_widgets/data_provider.dart';
@@ -89,18 +87,12 @@ class _StoryViewState extends State<StoryView> {
                   story: story,
                 );
               }();
-              final t = (index - _provider!.controller.storyController!.initialPage);
-              final rotationY = lerpDouble(0, 30, t as double)!;
-              final transform = Matrix4.identity();
-              transform.setEntry(3, 2, 0.003);
-              transform.rotateY(-rotationY * (pi / 180.0));
+              
 
-              return  Transform(
-                transform: transform,
-                child: ValueListenableBuilder<Widget>(
+              return   ValueListenableBuilder<Widget>(
                 valueListenable: content,
                 builder: (context, value, child) => value,
-                ),
+              
               );
             },
             onPageChanged: _handlePageChange,
