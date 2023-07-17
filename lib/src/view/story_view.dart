@@ -87,10 +87,18 @@ class _StoryViewState extends State<StoryView> {
                   story: story,
                 );
               }();
+              final t = (index - _provider!.controller.storyController!.initialPage);
+              final rotationY = lerpDouble(0, 30, t as double)!;
+              final transform = Matrix4.identity();
+              transform.setEntry(3, 2, 0.003);
+              transform.rotateY(-rotationY * (pi / 180.0));
 
-              return ValueListenableBuilder<Widget>(
+              return  Transform(
+                transform: transform,
+                child: ValueListenableBuilder<Widget>(
                 valueListenable: content,
                 builder: (context, value, child) => value,
+                ),
               );
             },
             onPageChanged: _handlePageChange,
