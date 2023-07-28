@@ -187,7 +187,11 @@ class ContentViewState extends State<ContentView> {
                           opacity: _provider!.controller.opacityController,
                           child: Stack(
                             fit: StackFit.expand,
-                            children: _getComponents(content),
+                            children: [
+                              ..._getComponents(content),
+                              if (widget.customChild != null)
+                                widget.customChild!,
+                            ],
                           ),
                         ),
                       ),
@@ -215,7 +219,6 @@ class ContentViewState extends State<ContentView> {
                     );
             },
           ),
-          if (widget.customChild != null) widget.customChild!,
         ],
       ),
     );
