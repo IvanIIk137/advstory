@@ -23,6 +23,7 @@ class TrayView extends StatefulWidget {
     required this.style,
     required this.buildStoryOnTrayScroll,
     required this.trayBuilder,
+    this.customChild,
     Key? key,
   }) : super(key: key);
 
@@ -46,6 +47,8 @@ class TrayView extends StatefulWidget {
 
   /// {@macro advstory.buildStoryOnTrayScroll}
   final bool buildStoryOnTrayScroll;
+
+  final Widget? customChild;
 
   @override
   State<TrayView> createState() => _TrayViewState();
@@ -131,7 +134,9 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
           preloadStory: widget.preloadStory,
           preloadContent: widget.preloadContent,
           firstContentPreperation: firstContentPreperation,
-          child: const StoryView(),
+          child: StoryView(
+            customChild: widget.customChild,
+          ),
         ),
       ),
       context,
