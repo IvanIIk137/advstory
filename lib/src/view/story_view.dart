@@ -9,7 +9,12 @@ import 'package:flutter/services.dart';
 /// Creates a content group view.
 class StoryView extends StatefulWidget {
   /// Creates a widget to managing [Story] skips using [PageView].
-  const StoryView({Key? key}) : super(key: key);
+  const StoryView({
+    Key? key,
+    this.customChild,
+  }) : super(key: key);
+
+  final Widget? customChild;
 
   @override
   State<StoryView> createState() => _StoryViewState();
@@ -85,14 +90,13 @@ class _StoryViewState extends State<StoryView> {
                 content.value = ContentView(
                   storyIndex: index,
                   story: story,
+                  customChild: widget.customChild,
                 );
               }();
-              
 
-              return   ValueListenableBuilder<Widget>(
+              return ValueListenableBuilder<Widget>(
                 valueListenable: content,
                 builder: (context, value, child) => value,
-              
               );
             },
             onPageChanged: _handlePageChange,

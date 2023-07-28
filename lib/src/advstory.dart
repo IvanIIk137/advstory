@@ -31,6 +31,7 @@ class AdvStory extends StatefulWidget {
     this.preloadStory = true,
     this.preloadContent = true,
     this.style = const AdvStoryStyle(),
+    this.customChild,
     Key? key,
   })  : storyController = controller,
         hasTrays = true,
@@ -49,6 +50,7 @@ class AdvStory extends StatefulWidget {
     this.preloadStory = true,
     this.style = const AdvStoryStyle(),
     required AdvStoryPlayerController controller,
+    this.customChild,
   })  : hasTrays = false,
         buildStoryOnTrayScroll = false,
         trayBuilder = null,
@@ -57,6 +59,8 @@ class AdvStory extends StatefulWidget {
 
   /// Determines if should build [TrayView] or [StoryView].
   final bool hasTrays;
+
+  final Widget? customChild;
 
   /// {@template advstory.style}
   /// Styles for the `AdvStory`. Provides customization options
@@ -220,7 +224,11 @@ class _AdvStoryState extends State<AdvStory> with TickerProviderStateMixin {
           style: widget.style,
           preloadStory: widget.preloadStory,
           preloadContent: widget.preloadContent,
-          child: const SizedBox.expand(child: StoryView()),
+          child: SizedBox.expand(
+            child: StoryView(
+              customChild: widget.customChild,
+            ),
+          ),
         );
       },
     );

@@ -19,6 +19,7 @@ class ContentView extends StatefulWidget {
   const ContentView({
     required this.storyIndex,
     required this.story,
+    this.customChild,
     Key? key,
   }) : super(key: key);
 
@@ -27,6 +28,8 @@ class ContentView extends StatefulWidget {
 
   /// Story that is being displayed in this view.
   final Story story;
+
+  final Widget? customChild;
 
   @override
   ContentViewState createState() => ContentViewState();
@@ -212,6 +215,7 @@ class ContentViewState extends State<ContentView> {
                     );
             },
           ),
+          if (widget.customChild != null) widget.customChild!,
         ],
       ),
     );
