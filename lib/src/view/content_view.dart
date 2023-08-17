@@ -162,7 +162,7 @@ class ContentViewState extends State<ContentView> {
             onLongPressCancel: _provider!.controller.resume,
             onLongPressUp: _provider!.controller.resume,
             onLongPress: _provider!.controller.exactPause,
-            // onTapUp: _handleTapUp,
+            onTapUp: _handleTapUp,
             onVerticalDragEnd: _handleVerticalDrag,
             child: PageView.builder(
               allowImplicitScrolling: _provider!.preloadContent,
