@@ -161,7 +161,7 @@ class ContentViewState extends State<ContentView> {
             // onLongPressDown: _handleDownPress,
             onLongPressCancel: _provider!.controller.resume,
             onLongPressUp: _provider!.controller.resume,
-            onLongPress: () => _handleDownPress,
+            onLongPress: () => _handleDownPress(0),
             // onTapUp: _handleTapUp,
             onVerticalDragEnd: _handleVerticalDrag,
             child: PageView.builder(
