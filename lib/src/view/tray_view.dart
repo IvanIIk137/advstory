@@ -143,32 +143,33 @@ class _TrayViewState extends State<TrayView> with TickerProviderStateMixin {
       pos.story,
     );
 
-    // SchedulerBinding.instance.addPostFrameCallback((_) async {});
-    if (isAnimated) {
-      final story = await widget.buildHelper.buildStory(pos.story);
-      final content = story.contentBuilder(0);
+    SchedulerBinding.instance.addPostFrameCallback((_) async {
+      if (isAnimated) {
+        final story = await widget.buildHelper.buildStory(pos.story);
+        final content = story.contentBuilder(0);
 
-      if (content is! SimpleCustomContent) {
-        // Handle jumps before story view opens
-        final posNotifier = widget.controller.positionNotifier;
-        if (posNotifier.story != pos.story || posNotifier.content != 0) {
-          firstContentPreperation!.complete();
-        } else {
-          // If position not changed, wait content preperation.
-          await firstContentPreperation!.future;
+        if (content is! SimpleCustomContent) {
+          // Handle jumps before story view opens
+          final posNotifier = widget.controller.positionNotifier;
+          if (posNotifier.story != pos.story || posNotifier.content != 0) {
+            firstContentPreperation!.complete();
+          } else {
+            // If position not changed, wait content preperation.
+            await firstContentPreperation!.future;
+          }
         }
+
+        _trayAnimationManager!.update(shouldAnimate: false, index: index);
       }
 
-      _trayAnimationManager!.update(shouldAnimate: false, index: index);
-    }
+      if (widget.style.hideBars) {
+        await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+      }
 
-    if (widget.style.hideBars) {
-      await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
-    }
-
-    _posController.forward();
-    Future.delayed(const Duration(milliseconds: 300), () {
-      widget.controller.positionNotifier.update(status: StoryStatus.play);
+      _posController.forward();
+      Future.delayed(const Duration(milliseconds: 300), () {
+        widget.controller.positionNotifier.update(status: StoryStatus.play);
+      });
     });
   }
 
